@@ -49,7 +49,7 @@ const UserListDialog = () => {
                 const postUrl = await generateUploadUrl();
                 const result = await fetch(postUrl, {
                     method: "POST",
-                    header: {"Content-Type": selectedImage?.type!},
+                    headers: {"Content-Type": selectedImage?.type!},
                     body : selectedImage,
                 });
                 const {storageId} = await result.json();
