@@ -11,11 +11,12 @@ import EmojiPicker, {Theme} from "emoji-picker-react";
 
 const MessageInput = () => {
 	const [msgText, setMsgText] = useState("");
-    const sendTextMsg = useMutation(api.messages.sendTextMessage);
-    const me =  useQuery(api.users.getMe);
+    const {ref, isComponentVisible, setIsComponentVisible}= useComponentVisible(false);
     const {selectedConversation} = useConversationStore(); 
 
-    const {ref, isComponentVisible, setIsComponentVisible}= useComponentVisible(false);
+    const sendTextMsg = useMutation(api.messages.sendTextMessage);
+    const me =  useQuery(api.users.getMe);
+
 
     const handleSendTextMsg = async  (e: React.FormEvent) => {
         e.preventDefault();
