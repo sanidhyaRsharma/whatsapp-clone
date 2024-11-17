@@ -44,6 +44,13 @@ export const sendTextMessage = mutation({
 				conversation: args.conversation,
 			});
 		}
+		if (args.content.startsWith("@dall-e")){
+			console.log("Querying dalle ...");
+			await ctx.scheduler.runAfter(0, api.openai.dall_e, {
+				messageBody: args.content,
+				conversation: args.conversation,
+			});
+		}
      },
 })
 
@@ -51,13 +58,14 @@ export const sendChatGPTMessage = mutation({
 	args: {
 		content: v.string(),
 		conversation: v.id("conversations"),
+		messageType: v.union(v.literal("text"), v.literal("image")),
 	},
 	handler: async (ctx, args) => {
 		console.log("Inserting chatgpt response to messages ...");
 		await ctx.db.insert("messages", {
 			content: args.content,
 			sender: "ChatGPT",
-			messageType: "text",
+			messageType: args.messageType,
 			conversation: args.conversation,
 		});
 	},
