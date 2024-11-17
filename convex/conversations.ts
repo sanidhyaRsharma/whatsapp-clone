@@ -83,7 +83,8 @@ export const getMyConversations = query({
                         .filter(q => q.eq(q.field("conversation"), conversation._id))
                         .order("desc")
                         .take(1);
-                    return {
+                    
+                        return {
                         ...userDetails, 
                         ...conversation,
                         lastMessage: lastMessage[0] || null,
