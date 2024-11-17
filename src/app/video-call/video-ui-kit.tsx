@@ -3,7 +3,7 @@ import { ZegoUIKitPrebuilt } from "@zegocloud/zego-uikit-prebuilt";
 
 
 export function getUrlParams(url = window.location.href) {
-	let urlStr = url.split("?")[1];
+	const urlStr = url.split("?")[1];
 	return new URLSearchParams(urlStr);
 }
 
@@ -12,7 +12,7 @@ export default function VideoUIKit() {
 	const roomID = getUrlParams().get("roomID") || randomID(5);
     const {user} = useClerk();
 
-	let myMeeting = (element: HTMLDivElement) => {
+	const myMeeting = (element: HTMLDivElement) => {
 
        const initMeeting = async() => {
         const res = await fetch(`/api/zegocloud?userID=${user?.id}`)
@@ -50,9 +50,9 @@ export default function VideoUIKit() {
 function randomID(len: number) {
 	let result = "";
 	if (result) return result;
-	var chars = "12345qwertyuiopasdfgh67890jklmnbvcxzMNBVCZXASDQWERTYHGFUIOLKJP",
-		maxPos = chars.length,
-		i;
+	const chars = "12345qwertyuiopasdfgh67890jklmnbvcxzMNBVCZXASDQWERTYHGFUIOLKJP";
+	const maxPos = chars.length;
+	let	i;
 	len = len || 5;
 	for (i = 0; i < len; i++) {
 		result += chars.charAt(Math.floor(Math.random() * maxPos));
