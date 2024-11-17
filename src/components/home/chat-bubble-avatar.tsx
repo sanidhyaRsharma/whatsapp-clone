@@ -10,7 +10,7 @@ type ChatBubbleAvatarProps = {
 
 const ChatBubbleAvatar = ({ isGroup, isMember, message, fromAI }: ChatBubbleAvatarProps) => {
 
-    if (!isGroup) return null;
+    if (!isGroup && !fromAI) return null;
     return (
         <Avatar className="overflow-visible relativej">
             { message.sender.isOnline && isMember && (

@@ -22,6 +22,7 @@ const ChatAvatarActions = ({me, message}: ChatAvatarActionsProps) => {
     const isGroup = selectedConversation?.isGroup;
 
     const handleKickUser =async (e: React.MouseEvent) => {
+        if (fromAI) return;
         e.stopPropagation();
         if (!selectedConversation) return;
         try {
@@ -40,6 +41,7 @@ const ChatAvatarActions = ({me, message}: ChatAvatarActionsProps) => {
     };
     
     const handleCreateConversation = async () => {
+        if (fromAI) return;
         try {
             const conversationId = await createConversation({
                 isGroup:false,
